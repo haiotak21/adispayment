@@ -209,7 +209,7 @@ const App: React.FC = () => {
     try {
       setLoading(true);
       const isAdminLoggedIn =
-        safeStorage.get("stro_admin_logged_in") === "true";
+        safeStorage.get("addispay_admin_logged_in") === "true";
       if (isAdminLoggedIn) {
         await loadAdminData();
         setView("ADMIN_DASHBOARD");
@@ -217,7 +217,7 @@ const App: React.FC = () => {
         return;
       }
 
-      const isLoggedIn = safeStorage.get("stro_logged_in") === "true";
+      const isLoggedIn = safeStorage.get("addispay_logged_in") === "true";
       if (!isLoggedIn) {
         setView("SPLASH");
         setLoading(false);
@@ -564,12 +564,12 @@ const App: React.FC = () => {
   const handleUserLogin = async () => {
     setActionLoading("login");
     if (authEmail === "verified@pay.bot" && authPassword === "paymentbot") {
-      safeStorage.set("stro_logged_in", "true");
+      safeStorage.set("addispay_logged_in", "true");
       safeStorage.set("kyc_status", "APPROVED");
       await loadData();
       safeHaptic("notification", { type: "success" });
     } else {
-      safeStorage.set("stro_logged_in", "true");
+      safeStorage.set("addispay_logged_in", "true");
       await loadData();
       safeHaptic("notification", { type: "success" });
     }
@@ -582,7 +582,7 @@ const App: React.FC = () => {
       authPassword === "Payment2025"
     ) {
       setActionLoading("login");
-      safeStorage.set("stro_admin_logged_in", "true");
+      safeStorage.set("addispay_admin_logged_in", "true");
       await loadAdminData();
       setView("ADMIN_DASHBOARD");
       setActionLoading(null);
@@ -797,7 +797,7 @@ const App: React.FC = () => {
                 <Wallet size={64} />
               </div>
               <h1 className="text-5xl font-black tracking-tighter">
-                StroWallet
+                Addis Pay
               </h1>
               <p className="opacity-60 font-medium">
                 Verified Payment Architecture

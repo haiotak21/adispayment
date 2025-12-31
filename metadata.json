@@ -1,5 +1,5 @@
 {
-  "name": "payment bot telegram",
+  "name": "Addis Pay",
   "description": "A high-performance Telegram Mini App for managing virtual credit cards, funding, and tracking transactions.",
   "requestFramePermissions": [
     "camera"
