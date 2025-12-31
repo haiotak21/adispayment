@@ -1,5 +1,5 @@
 
-import { Card, Transaction, UserProfile, CardStatus, KycApplication, DepositRequest, WithdrawalRequest, SystemSettings } from '../types';
+import { Card, Transaction, UserProfile, CardStatus, KycApplication, DepositRequest, WithdrawalRequest, SystemSettings, CardRequest } from '../types';
 
 export const apiService = {
   getProfile: async (): Promise<UserProfile> => {
@@ -58,6 +58,14 @@ export const apiService = {
     ];
   },
 
+    getAdminCardRequests: async (): Promise<CardRequest[]> => {
+    return [
+      { id: 'creq_1', userId: 9901, userName: 'Abebe Bikila', email: 'abebe@example.com', date: new Date().toISOString(), status: 'PENDING' },
+      { id: 'creq_2', userId: 9903, userName: 'Haile Gebrselassie', email: 'haile@example.com', date: new Date().toISOString(), status: 'PENDING' },
+    ];
+  },
+
+
   getAdminDepositRequests: async (): Promise<DepositRequest[]> => {
     return [
       { id: 'dep_1', userId: 9901, userName: 'Abebe Bikila', amount: 500.00, date: new Date().toISOString(), status: 'PENDING' },
@@ -99,6 +107,10 @@ export const apiService = {
 
   updateKycStatus: async (appId: string, status: 'APPROVED' | 'REJECTED'): Promise<void> => {
     console.log(`KYC ${appId} updated to ${status}`);
+  },
+
+   updateCardRequestStatus: async (requestId: string, status: 'APPROVED' | 'REJECTED'): Promise<void> => {
+    console.log(`Card Request ${requestId} updated to ${status}`);
   },
 
   updateDepositStatus: async (requestId: string, status: 'APPROVED' | 'REJECTED'): Promise<void> => {

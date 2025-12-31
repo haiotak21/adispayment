@@ -34,6 +34,15 @@ export interface Card {
   userName?: string;
 }
 
+export interface CardRequest {
+  id: string;
+  userId: number;
+  userName: string;
+  email: string;
+  date: string;
+  status: 'PENDING' | 'APPROVED' | 'REJECTED';
+}
+
 export interface Transaction {
   id: string;
   amount: number;

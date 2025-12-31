@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React from "react";
 
 interface ModalProps {
   isOpen: boolean;
@@ -12,39 +11,44 @@ interface ModalProps {
   isDestructive?: boolean;
 }
 
-const Modal: React.FC<ModalProps> = ({ 
-  isOpen, 
-  title, 
-  message, 
-  onConfirm, 
-  onCancel, 
-  confirmText = "Confirm", 
+const Modal: React.FC<ModalProps> = ({
+  isOpen,
+  title,
+  message,
+  onConfirm,
+  onCancel,
+  confirmText = "Confirm",
   cancelText = "Cancel",
-  isDestructive = false
+  isDestructive = false,
 }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-end justify-center px-4 pb-10 sm:items-center sm:p-0">
-      <div 
-        className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity" 
+    <div className="fixed inset-0 z-[5000] flex items-center justify-center p-6">
+      {/* Enhanced Backdrop */}
+      <div
+        className="fixed inset-0 bg-slate-900/40 backdrop-blur-md transition-opacity animate-fade-in"
         onClick={onCancel}
       ></div>
 
-      <div className="relative transform overflow-hidden rounded-3xl bg-[var(--tg-theme-bg-color, #ffffff)] p-6 text-left shadow-2xl transition-all w-full max-w-sm border border-gray-100/10">
-        <div className="text-center">
-          <h3 className="text-lg font-bold leading-6 text-[var(--tg-theme-text-color)] mb-2">
+      {/* Modal Container */}
+      <div className="relative transform overflow-hidden rounded-[40px] bg-white p-8 text-center shadow-[0_32px_64px_-12px_rgba(0,0,0,0.14)] transition-all w-full max-w-sm border border-gray-100 animate-scale-in">
+        <div className="mb-6">
+          <h3 className="text-xl font-black text-gray-900 mb-3 tracking-tight">
             {title}
           </h3>
-          <p className="text-sm opacity-60 mb-8">
+          <p className="text-sm font-medium text-gray-500 leading-relaxed px-4">
             {message}
           </p>
         </div>
-        <div className="flex flex-col gap-2">
+
+        <div className="space-y-3">
           <button
             type="button"
-            className={`w-full py-4 rounded-2xl font-bold text-white transition-transform active:scale-95 shadow-lg ${
-              isDestructive ? 'bg-red-500 shadow-red-200' : 'bg-indigo-600 shadow-indigo-200'
+            className={`w-full py-5 rounded-2xl font-black text-sm uppercase tracking-wider text-white transition-all active:scale-95 shadow-xl ${
+              isDestructive
+                ? "bg-red-500 shadow-red-200 hover:bg-red-600"
+                : "bg-indigo-600 shadow-indigo-200 hover:bg-indigo-700"
             }`}
             onClick={onConfirm}
           >
@@ -52,7 +56,7 @@ const Modal: React.FC<ModalProps> = ({
           </button>
           <button
             type="button"
-            className="w-full py-4 rounded-2xl font-bold opacity-50 active:bg-black/5"
+            className="w-full py-5 rounded-2xl font-black text-sm uppercase tracking-wider text-gray-400 hover:text-gray-600 hover:bg-gray-50 transition-all"
             onClick={onCancel}
           >
             {cancelText}
